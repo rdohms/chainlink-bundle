@@ -1,0 +1,18 @@
+{
+    "name": "symbid/chainlink-bundle",
+    "description": "Wrapper for Chainlink to provide drop in Chain of responsibility implementation into Symfony. Provides tags to inject handlers into configuration defined contexts.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rafael Dohms",
+            "email": "rdohms@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "symfony/dependency-injection": "~2.5",
+        "symfony/http-kernel": "~2.5",
+        "symfony/config": "~2.5"
+    }
+}

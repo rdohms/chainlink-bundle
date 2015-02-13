@@ -23,7 +23,7 @@
     },
     "require": {
         "php": ">=5.4",
-        "symbid/chainlink": "^0.1"
+        "symbid/chainlink": "^0.2"
     },
     "require-dev": {
         "symfony/dependency-injection": "~2.5",
@@ -33,5 +33,10 @@
         "mockery/mockery": "^0.9",
         "scrutinizer/ocular": "~1.1",
         "matthiasnoback/symfony-config-test": "^0.4"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }

@@ -7,6 +7,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * Class HandleTagsPass
+ * Registers configured contexts as services and attaches handlers tagged with the configured tag
+ *
+ * @package Symbid\Chainlink\Bundle\DependencyInjection\CompilerPass
+ */
 class HandleTagsPass implements CompilerPassInterface
 {
     /**
@@ -25,38 +31,38 @@ class HandleTagsPass implements CompilerPassInterface
     {
         $this->container = $container;
 
-        $contexts = $container->getParameter('symbid_chainlink.contexts');
+        $contextNames = $container->getParameter('symbid_chainlink.contexts');
 
-        foreach ($contexts as $context => $config) {
-            $this->defineContext($context);
-            $this->attachHandlers($context, $config['tag']);
+        foreach ($contextNames as $contextName => $config) {
+            $this->defineContext($contextName);
+            $this->attachHandlers($contextName, $config['tag']);
         }
     }
 
     /**
      * Creates a new Context definition
      *
-     * @param string $context
+     * @param string $contextName
      */
-    protected function defineContext($context)
+    protected function defineContext($contextName)
     {
-        $definition = new Definition(Context::class);
-        $this->container->setDefinition('symbid_chainlink.context.' . $context, $definition);
+        $definition = new Definition('Symbid\Chainlink\Context');
+        $this->container->setDefinition('symbid_chainlink.context.' . $contextName, $definition);
     }
 
     /**
      * Attaches tagged handlers to the appropriate context
      *
-     * @param string $context
+     * @param string $contextName
      * @param string $tag
      */
-    protected function attachHandlers($context, $tag)
+    protected function attachHandlers($contextName, $tag)
     {
-        if (! $this->container->hasDefinition($context)) {
+        if (! $this->container->hasDefinition($contextName)) {
             return;
         }
 
-        $definition = $this->container->getDefinition($context);
+        $definition = $this->container->getDefinition($contextName);
 
         $taggedServices = $this->container->findTaggedServiceIds($tag);
 

@@ -1,5 +1,12 @@
 # Symbid Chainlink Symfony Bundle
 
+[![Latest Version](https://img.shields.io/github/release/symbid/chainlink-bundle.svg?style=flat-square)](https://github.com/Symbid/chainlink-bundle/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/Symbid/chainlink-bundle/master.svg?style=flat-square)](https://travis-ci.org/symbid/chainlink-bundle)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/Symbid/chainlink-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/symbid/chainlink-bundle/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/Symbid/chainlink-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/symbid/chainlink-bundle)
+[![Total Downloads](https://img.shields.io/packagist/dt/symbid/chainlink-bundle.svg?style=flat-square)](https://packagist.org/packages/symbid/chainlink-bundle)
+
 This Bundle wraps Chainlink library and offers a drop in solution to implement the Chain of Responsibility pattern, based on Symfony service tags. It allows you to, via configuration, setup multiple contexts and define which tags provide handlers for each.
 
 ## Installation

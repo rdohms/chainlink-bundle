@@ -33,7 +33,7 @@ public function registerBundles()
 }
 ```
 
-If you are looking for other frameworks, check [Packagist](http://pacakgist.org/vendor/symbid) for wrappers and adapters.
+If you are looking for other frameworks, check [Packagist](http://packagist.org/packages/symbid/) for wrappers and adapters.
 
 ## Usage
 

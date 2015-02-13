@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e41b253dabed4d6c8bc8f79cba0e7422",
+    "hash": "c5165b9170e11d0fe89fac4dd2257ba1",
     "packages": [
         {
             "name": "symbid/chainlink",
@@ -2514,7 +2514,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5"
+        "php": ">=5.4"
     },
     "platform-dev": []
 }

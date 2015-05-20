@@ -52,6 +52,10 @@ The bundle will look for any services tagged with the `tag` defined above and in
 To handle a request, retrieve the Context from the Container and pass in your input.
 
 ```php
+$this->container->get('symbid_chainlink.context.my_new_context')->handle($input);
+
+//or its also aliased at
+
 $this->container->get('my_new_context')->handle($input);
 ```
 

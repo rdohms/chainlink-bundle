@@ -56,9 +56,16 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
             )
             ->twice();
 
+        $this->container->shouldReceive('setAlias')
+            ->with(
+                m::anyOf('context1', 'context2'),
+                m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2')
+            )
+            ->twice();
+
         $this->container
             ->shouldReceive('hasDefinition')
-            ->with(m::anyOf('context1', 'context2'))
+            ->with(m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2'))
             ->twice()
             ->andReturn(true);
 
@@ -76,13 +83,13 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getDefinition')
-            ->with('context1')
+            ->with(HandleTagsPass::SERVICE_PREFIX . 'context1')
             ->once()
             ->andReturn($context1Definition);
 
         $this->container
             ->shouldReceive('getDefinition')
-            ->with('context2')
+            ->with(HandleTagsPass::SERVICE_PREFIX . 'context2')
             ->once()
             ->andReturn($context2Definition);
 
@@ -122,9 +129,16 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
             )
             ->twice();
 
+        $this->container->shouldReceive('setAlias')
+            ->with(
+                m::anyOf('context1', 'context2'),
+                m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2')
+            )
+            ->twice();
+
         $this->container
             ->shouldReceive('hasDefinition')
-            ->with(m::anyOf('context1', 'context2'))
+            ->with(m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2'))
             ->twice()
             ->andReturn(true);
 
@@ -140,13 +154,13 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getDefinition')
-            ->with('context1')
+            ->with(HandleTagsPass::SERVICE_PREFIX . 'context1')
             ->once()
             ->andReturn($context1Definition);
 
         $this->container
             ->shouldReceive('getDefinition')
-            ->with('context2')
+            ->with(HandleTagsPass::SERVICE_PREFIX . 'context2')
             ->once()
             ->andReturn($context2Definition);
 
@@ -214,9 +228,16 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
             )
             ->twice();
 
+        $this->container->shouldReceive('setAlias')
+            ->with(
+                m::anyOf('context1', 'context2'),
+                m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2')
+            )
+            ->twice();
+
         $this->container
             ->shouldReceive('hasDefinition')
-            ->with(m::anyOf('context1', 'context2'))
+            ->with(m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2'))
             ->twice()
             ->andReturn(false);
 

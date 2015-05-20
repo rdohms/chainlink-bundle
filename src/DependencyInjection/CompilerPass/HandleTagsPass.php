@@ -2,6 +2,7 @@
 
 namespace Symbid\Chainlink\Bundle\DependencyInjection\CompilerPass;
 
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -15,6 +16,8 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class HandleTagsPass implements CompilerPassInterface
 {
+    const SERVICE_PREFIX = 'symbid_chainlink.context.';
+
     /**
      * @var ContainerBuilder
      */
@@ -47,7 +50,9 @@ class HandleTagsPass implements CompilerPassInterface
     protected function defineContext($contextName)
     {
         $definition = new Definition('Symbid\Chainlink\Context');
-        $this->container->setDefinition('symbid_chainlink.context.' . $contextName, $definition);
+        $this->container->setDefinition(self::SERVICE_PREFIX . $contextName, $definition);
+
+        $this->container->setAlias($contextName, self::SERVICE_PREFIX . $contextName);
     }
 
     /**
@@ -58,11 +63,13 @@ class HandleTagsPass implements CompilerPassInterface
      */
     protected function attachHandlers($contextName, $tag)
     {
-        if (! $this->container->hasDefinition($contextName)) {
+        $serviceName = self::SERVICE_PREFIX . $contextName;
+
+        if (! $this->container->hasDefinition($serviceName)) {
             return;
         }
 
-        $definition = $this->container->getDefinition($contextName);
+        $definition = $this->container->getDefinition($serviceName);
 
         $taggedServices = $this->container->findTaggedServiceIds($tag);
 

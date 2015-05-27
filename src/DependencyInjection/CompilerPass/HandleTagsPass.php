@@ -65,16 +65,21 @@ class HandleTagsPass implements CompilerPassInterface
     {
         $serviceName = self::SERVICE_PREFIX . $contextName;
 
-        if (! $this->container->hasDefinition($serviceName)) {
+        if ( ! $this->container->hasDefinition($serviceName)) {
             return;
         }
 
         $definition = $this->container->getDefinition($serviceName);
 
-        $taggedServices = $this->container->findTaggedServiceIds($tag);
-
-        foreach ($taggedServices as $id => $tags) {
-            $definition->addMethodCall('addHandler', [new Reference($id)]);
+        foreach ($this->container->findTaggedServiceIds($tag) as $id => $tags) {
+            foreach ($tags as $attributes) {
+                if (array_key_exists('priority', $attributes)) {
+                    $definition->addMethodCall('addHandler', [new Reference($id), $attributes['priority']]);
+                } else {
+                    $definition->addMethodCall('addHandler', [new Reference($id)]);
+                }
+            }
         }
+
     }
 }

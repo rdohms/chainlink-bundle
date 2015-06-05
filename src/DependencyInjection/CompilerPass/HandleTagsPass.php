@@ -65,7 +65,7 @@ class HandleTagsPass implements CompilerPassInterface
     {
         $serviceName = self::SERVICE_PREFIX . $contextName;
 
-        if ( ! $this->container->hasDefinition($serviceName)) {
+        if (! $this->container->hasDefinition($serviceName)) {
             return;
         }
 
@@ -80,6 +80,5 @@ class HandleTagsPass implements CompilerPassInterface
                 }
             }
         }
-
     }
 }

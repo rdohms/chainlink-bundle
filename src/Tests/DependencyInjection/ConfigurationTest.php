@@ -33,8 +33,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                 'symbid_chainlink' => [
                     'contexts' => []
                 ]
-            ]
-            , 'The path "symbid_chainlink.contexts" should have at least 1 element(s) defined.'
+            ], 'The path "symbid_chainlink.contexts" should have at least 1 element(s) defined.'
         );
     }
 
@@ -46,8 +45,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                         'name' => []
                     ]
                 ]
-            ]
-            , 'The child node "tag" at path "symbid_chainlink.contexts.name" must be configured.'
+            ], 'The child node "tag" at path "symbid_chainlink.contexts.name" must be configured.'
         );
     }
 

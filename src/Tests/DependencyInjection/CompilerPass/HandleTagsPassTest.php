@@ -10,7 +10,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ContainerBuilder | MockInterface
      */
@@ -152,7 +151,7 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('addMethodCall')
             ->twice()
             ->with("addHandler", \Mockery::on(function (array $param) {
-                return ($param[0] instanceof \Symfony\Component\DependencyInjection\Reference && ($param[1] == 9000 OR $param[1] == 1));
+                return ($param[0] instanceof \Symfony\Component\DependencyInjection\Reference && ($param[1] == 9000 or $param[1] == 1));
             }));
 
         $context2Definition = m::mock('Symfony\Component\DependencyInjection\Definition');

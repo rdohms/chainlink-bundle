@@ -60,3 +60,24 @@ $this->container->get('my_new_context')->handle($input);
 ```
 
 Services that will be used as handlers need to implement the `HandlerInterface` from Chainlink. Its the handler's responsibility to identify which input it is responsible for, the interface contains a `handles` method that is called for that.
+
+## Order of Chain handling
+
+As of version 0.3, Chainlink supports ordering of the handlers using the priority system used extensively in Symfony. The handlers will be called from high to low. 
+
+```yml
+
+# src/Vendor/MyBundle/Resources/config/services.yml
+
+my_service:
+  class: MyHandler
+  tag:
+    - { name: my_new_context, priority: 1 }
+
+my_other_service:
+  class: OtherHandler
+  tag:
+    - { name: my_new_context, priority: 9001 }
+```
+
+In this case `OtherHandler` will be called first, and then `MyHandler`, provided they can handle the usecase.

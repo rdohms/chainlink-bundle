@@ -10,7 +10,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ContainerBuilder | MockInterface
      */
@@ -38,8 +37,8 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
         ];
 
         $taggedServices = [
-            'tag1' => ['id1' => [], 'id2' => []],
-            'tag2' => ['id3' => []],
+            'tag1' => ['id1' => [[]], 'id2' => [[]]],
+            'tag2' => ['id3' => [[]]],
         ];
 
         $this->container
@@ -80,6 +79,88 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('addMethodCall')
             ->once()
             ->with('addHandler', m::type('array'));
+
+        $this->container
+            ->shouldReceive('getDefinition')
+            ->with(HandleTagsPass::SERVICE_PREFIX . 'context1')
+            ->once()
+            ->andReturn($context1Definition);
+
+        $this->container
+            ->shouldReceive('getDefinition')
+            ->with(HandleTagsPass::SERVICE_PREFIX . 'context2')
+            ->once()
+            ->andReturn($context2Definition);
+
+        $this->container
+            ->shouldReceive('findTaggedServiceIds')
+            ->with('tag1')
+            ->once()
+            ->andReturn($taggedServices['tag1']);
+
+        $this->container
+            ->shouldReceive('findTaggedServiceIds')
+            ->with('tag2')
+            ->once()
+            ->andReturn($taggedServices['tag2']);
+
+        $this->pass->process($this->container);
+    }
+
+    public function testProcessWithPriority()
+    {
+        $contextConfig = [
+            'context1' => ['tag' => 'tag1'],
+            'context2' => ['tag' => 'tag2'],
+        ];
+
+        $taggedServices = [
+            'tag1' => ['id1' => [['priority' => 9000]], 'id2' => [['priority' => 1]]],
+            'tag2' => ['id3' => [['priority' => 100]]],
+        ];
+
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('symbid_chainlink.contexts')
+            ->once()
+            ->andReturn($contextConfig);
+
+        $this->container
+            ->shouldReceive('setDefinition')
+            ->with(
+                '/^symbid_chainlink\.context\..*/',
+                m::type('Symfony\Component\DependencyInjection\Definition')
+            )
+            ->twice();
+
+        $this->container->shouldReceive('setAlias')
+            ->with(
+                m::anyOf('context1', 'context2'),
+                m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2')
+            )
+            ->twice();
+
+        $this->container
+            ->shouldReceive('hasDefinition')
+            ->with(m::anyOf(HandleTagsPass::SERVICE_PREFIX . 'context1', HandleTagsPass::SERVICE_PREFIX . 'context2'))
+            ->twice()
+            ->andReturn(true);
+
+        $context1Definition = m::mock('Symfony\Component\DependencyInjection\Definition');
+        $context1Definition
+            ->shouldReceive('addMethodCall')
+            ->twice()
+            ->with("addHandler", \Mockery::on(function (array $param) {
+                return ($param[0] instanceof \Symfony\Component\DependencyInjection\Reference && ($param[1] == 9000 or $param[1] == 1));
+            }));
+
+        $context2Definition = m::mock('Symfony\Component\DependencyInjection\Definition');
+        $context2Definition
+            ->shouldReceive('addMethodCall')
+            ->once()
+            ->with('addHandler', \Mockery::on(function (array $param) {
+                return ($param[0] instanceof \Symfony\Component\DependencyInjection\Reference && $param[1] == 100);
+            }));
 
         $this->container
             ->shouldReceive('getDefinition')

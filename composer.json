@@ -1,11 +1,11 @@
 {
-    "name": "symbid/chainlink-bundle",
+    "name": "dms/chainlink-bundle",
     "description": "Wrapper for Chainlink to provide drop in Chain of responsibility implementation into Symfony. Provides tags to inject handlers into configuration defined contexts.",
-    "homepage": "https://github.com/Symbid/chainlink-bundle",
+    "homepage": "https://github.com/rdohms/chainlink-bundle",
     "license": "MIT",
     "keywords": [
         "chain of responsibility",
-        "symbid",
+        "dms",
         "handler",
         "symfony",
         "bundle"
@@ -18,12 +18,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Symbid\\Chainlink\\Bundle\\": "src/"
+            "DMS\\Chainlink\\Bundle\\": "src/"
         }
     },
     "require": {
         "php": ">=5.4",
-        "symbid/chainlink": "^0.3"
+        "dms/chainlink": "^0.4"
     },
     "require-dev": {
         "symfony/dependency-injection": "~2.5",

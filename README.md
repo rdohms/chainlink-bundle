@@ -1,11 +1,11 @@
-# Symbid Chainlink Symfony Bundle
+# DMS Chainlink Symfony Bundle
 
-[![Latest Version](https://img.shields.io/github/release/symbid/chainlink-bundle.svg?style=flat-square)](https://github.com/Symbid/chainlink-bundle/releases)
+[![Latest Version](https://img.shields.io/github/release/rdohms/chainlink-bundle.svg?style=flat-square)](https://github.com/rdohms/chainlink-bundle/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/Symbid/chainlink-bundle/master.svg?style=flat-square)](https://travis-ci.org/symbid/chainlink-bundle)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/Symbid/chainlink-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/symbid/chainlink-bundle/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/Symbid/chainlink-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/symbid/chainlink-bundle)
-[![Total Downloads](https://img.shields.io/packagist/dt/symbid/chainlink-bundle.svg?style=flat-square)](https://packagist.org/packages/symbid/chainlink-bundle)
+[![Build Status](https://img.shields.io/travis/rdohms/chainlink-bundle/master.svg?style=flat-square)](https://travis-ci.org/rdohms/chainlink-bundle)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/rdohms/chainlink-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/rdohms/chainlink-bundle/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/rdohms/chainlink-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/rdohms/chainlink-bundle)
+[![Total Downloads](https://img.shields.io/packagist/dt/rdohms/chainlink-bundle.svg?style=flat-square)](https://packagist.org/packages/rdohms/chainlink-bundle)
 
 This Bundle wraps Chainlink library and offers a drop in solution to implement the Chain of Responsibility pattern, based on Symfony service tags. It allows you to, via configuration, setup multiple contexts and define which tags provide handlers for each.
 
@@ -14,7 +14,7 @@ This Bundle wraps Chainlink library and offers a drop in solution to implement t
 To get the Bundle code, run:
 
 ```sh
-composer require symbid/chainlink-bundle
+composer require dms/chainlink-bundle
 ```
 
 Edit your `AppKernel.php` file to instantiate the Bundle:
@@ -28,12 +28,12 @@ public function registerBundles()
     $bundles = array(
         // ...
 
-        new Symbid\Chainlink\Bundle\SymbidChainlinkBundle(),
+        new DMS\Chainlink\Bundle\DMSChainlinkBundle(),
     );
 }
 ```
 
-If you are looking for other frameworks, check [Packagist](http://packagist.org/packages/symbid/) for wrappers and adapters.
+If you are looking for other frameworks, check [Packagist](http://packagist.org/packages/dms/) for wrappers and adapters.
 
 ## Usage
 
@@ -41,7 +41,7 @@ To register new Contexts and assign handlers to them, simply add configuration e
 
 ```yml
 
-symbid_chainlink:
+dms_chainlink:
     contexts:
         my_new_context:
             tag: mycontext.handler
@@ -52,7 +52,7 @@ The bundle will look for any services tagged with the `tag` defined above and in
 To handle a request, retrieve the Context from the Container and pass in your input.
 
 ```php
-$this->container->get('symbid_chainlink.context.my_new_context')->handle($input);
+$this->container->get('dms_chainlink.context.my_new_context')->handle($input);
 
 //or its also aliased at
 

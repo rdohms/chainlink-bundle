@@ -1,6 +1,6 @@
 <?php
 
-namespace Symbid\Chainlink\Bundle\DependencyInjection\CompilerPass;
+namespace DMS\Chainlink\Bundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -12,11 +12,11 @@ use Symfony\Component\DependencyInjection\Reference;
  * Class HandleTagsPass
  * Registers configured contexts as services and attaches handlers tagged with the configured tag
  *
- * @package Symbid\Chainlink\Bundle\DependencyInjection\CompilerPass
+ * @package DMS\Chainlink\Bundle\DependencyInjection\CompilerPass
  */
 class HandleTagsPass implements CompilerPassInterface
 {
-    const SERVICE_PREFIX = 'symbid_chainlink.context.';
+    const SERVICE_PREFIX = 'dms_chainlink.context.';
 
     /**
      * @var ContainerBuilder
@@ -34,7 +34,7 @@ class HandleTagsPass implements CompilerPassInterface
     {
         $this->container = $container;
 
-        $contextNames = $container->getParameter('symbid_chainlink.contexts');
+        $contextNames = $container->getParameter('dms_chainlink.contexts');
 
         foreach ($contextNames as $contextName => $config) {
             $this->defineContext($contextName);
@@ -49,7 +49,7 @@ class HandleTagsPass implements CompilerPassInterface
      */
     protected function defineContext($contextName)
     {
-        $definition = new Definition('Symbid\Chainlink\Context');
+        $definition = new Definition('DMS\Chainlink\Context');
         $this->container->setDefinition(self::SERVICE_PREFIX . $contextName, $definition);
 
         $this->container->setAlias($contextName, self::SERVICE_PREFIX . $contextName);

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Symbid\Chainlink\Bundle\Tests\DependencyInjection;
+namespace DMS\Chainlink\Bundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyConfigTest\PhpUnit\AbstractConfigurationTestCase;
-use Symbid\Chainlink\Bundle\DependencyInjection\Configuration;
+use DMS\Chainlink\Bundle\DependencyInjection\Configuration;
 
 class ConfigurationTest extends AbstractConfigurationTestCase
 {
@@ -23,36 +23,36 @@ class ConfigurationTest extends AbstractConfigurationTestCase
     {
         $this->assertConfigurationIsInvalid(
             [],
-            'The child node "contexts" at path "symbid_chainlink" must be configured'
+            'The child node "contexts" at path "dms_chainlink" must be configured'
         );
     }
 
     public function testEmptyContexts()
     {
         $this->assertConfigurationIsInvalid([
-                'symbid_chainlink' => [
+                'dms_chainlink' => [
                     'contexts' => []
                 ]
-            ], 'The path "symbid_chainlink.contexts" should have at least 1 element(s) defined.'
+            ], 'The path "dms_chainlink.contexts" should have at least 1 element(s) defined.'
         );
     }
 
     public function testContextWithoutTags()
     {
         $this->assertConfigurationIsInvalid([
-                'symbid_chainlink' => [
+                'dms_chainlink' => [
                     'contexts' => [
                         'name' => []
                     ]
                 ]
-            ], 'The child node "tag" at path "symbid_chainlink.contexts.name" must be configured.'
+            ], 'The child node "tag" at path "dms_chainlink.contexts.name" must be configured.'
         );
     }
 
     public function testValidConfiguration()
     {
         $this->assertConfigurationIsValid([
-            'symbid_chainlink' => [
+            'dms_chainlink' => [
                 'contexts' => [
                     'name' => ['tag' => 'this.tag'],
                     'another.name' => ['tag' => 'this.other.tag'],

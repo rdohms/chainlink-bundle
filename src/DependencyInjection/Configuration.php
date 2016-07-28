@@ -1,6 +1,6 @@
 <?php
 
-namespace Symbid\Chainlink\Bundle\DependencyInjection;
+namespace DMS\Chainlink\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('symbid_chainlink');
+        $rootNode = $treeBuilder->root('dms_chainlink');
 
         $rootNode
             ->children()

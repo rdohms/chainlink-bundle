@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Symbid\Chainlink\Bundle\Tests\DependencyInjection\CompilerPass;
+namespace DMS\Chainlink\Bundle\Tests\DependencyInjection\CompilerPass;
 
 use Mockery as m;
 use Mockery\MockInterface;
-use Symbid\Chainlink\Bundle\DependencyInjection\CompilerPass\HandleTagsPass;
+use DMS\Chainlink\Bundle\DependencyInjection\CompilerPass\HandleTagsPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
@@ -43,14 +43,14 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getParameter')
-            ->with('symbid_chainlink.contexts')
+            ->with('dms_chainlink.contexts')
             ->once()
             ->andReturn($contextConfig);
 
         $this->container
             ->shouldReceive('setDefinition')
             ->with(
-                '/^symbid_chainlink\.context\..*/',
+                '/^dms_chainlink\.context\..*/',
                 m::type('Symfony\Component\DependencyInjection\Definition')
             )
             ->twice();
@@ -121,14 +121,14 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getParameter')
-            ->with('symbid_chainlink.contexts')
+            ->with('dms_chainlink.contexts')
             ->once()
             ->andReturn($contextConfig);
 
         $this->container
             ->shouldReceive('setDefinition')
             ->with(
-                '/^symbid_chainlink\.context\..*/',
+                '/^dms_chainlink\.context\..*/',
                 m::type('Symfony\Component\DependencyInjection\Definition')
             )
             ->twice();
@@ -198,14 +198,14 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getParameter')
-            ->with('symbid_chainlink.contexts')
+            ->with('dms_chainlink.contexts')
             ->once()
             ->andReturn($contextConfig);
 
         $this->container
             ->shouldReceive('setDefinition')
             ->with(
-                '/^symbid_chainlink\.context\..*/',
+                '/^dms_chainlink\.context\..*/',
                 m::type('Symfony\Component\DependencyInjection\Definition')
             )
             ->twice();
@@ -260,7 +260,7 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getParameter')
-            ->with('symbid_chainlink.contexts')
+            ->with('dms_chainlink.contexts')
             ->once()
             ->andReturn($contextConfig);
 
@@ -297,14 +297,14 @@ class HandleTagsPassTest extends \PHPUnit_Framework_TestCase
 
         $this->container
             ->shouldReceive('getParameter')
-            ->with('symbid_chainlink.contexts')
+            ->with('dms_chainlink.contexts')
             ->once()
             ->andReturn($contextConfig);
 
         $this->container
             ->shouldReceive('setDefinition')
             ->with(
-                '/^symbid_chainlink\.context\..*/',
+                '/^dms_chainlink\.context\..*/',
                 m::type('Symfony\Component\DependencyInjection\Definition')
             )
             ->twice();

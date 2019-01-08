@@ -26,7 +26,7 @@
         "dms/chainlink": "^0.4"
     },
     "require-dev": {
-        "symfony/dependency-injection": "~2.5",
+        "symfony/dependency-injection": "~3.1",
         "symfony/http-kernel": "~2.5",
         "symfony/config": "~2.5",
         "phpunit/phpunit": "~4.5",

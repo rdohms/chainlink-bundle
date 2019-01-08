@@ -29,7 +29,7 @@
         "symfony/dependency-injection": "~2.5",
         "symfony/http-kernel": "~2.5",
         "symfony/config": "~2.5",
-        "phpunit/phpunit": "~4.5",
+        "phpunit/phpunit": "~7.1",
         "mockery/mockery": "^0.9",
         "scrutinizer/ocular": "~1.1",
         "matthiasnoback/symfony-config-test": "^0.4"

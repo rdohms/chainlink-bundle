@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "symfony/dependency-injection": "~2.5",
-        "symfony/http-kernel": "~2.5",
+        "symfony/http-kernel": "~3.2",
         "symfony/config": "~2.5",
         "phpunit/phpunit": "~4.5",
         "mockery/mockery": "^0.9",
